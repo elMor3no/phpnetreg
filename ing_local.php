@@ -8,10 +8,9 @@
   <strong>Nombre del local:</strong><br>
   <input type="text" name="nomblocal">
   <br/>
- <!-- Agregar descripcion a la BD
- <strong>Descripción:</strong><br>
+ <strong>Descripcion:</strong><br>
   <input type="text" name="descripcion">
-  <br/> -->
+  <br/> 
   <input type="submit" value="Guardar">
 </form>
 </body>
@@ -37,11 +36,11 @@ if(count($_GET) != 0){
 if($pParam != FALSE){
 
   $sNombre = $pParam['nomblocal'];
-//  $sDescripcion = $pParam['descripcion']; Agregar descripcion a la BD
+  $sDescripcion = $pParam['descripcion']; 
 
   if(
-     ($sNombre == '') //or 
- //    ($sDescripcion == '') Agregar descripcion a la BD
+     ($sNombre == '') or 
+     ($sDescripcion == '') 
   ){
 
     $sMensaje =
@@ -54,11 +53,11 @@ if($pParam != FALSE){
 	  
 	  $database->insert("CLibertad", [
 "local" => $sNombre,
-//"descripcion" => $sDescripcion Agregar descripcion a la BD
+"descripcion" => $sDescripcion 
 ]);
 echo "Nuevo local insertado" . "<br>";
 echo "Nombre del local: " . $sNombre . "<br>";
-//echo "Descripcion del Rol: " . $sDescripcion . "<br>"; Agregar descripcion a la BD
+echo "Descripcion del local: " . $sDescripcion . "<br>"; 
 
 
   }
