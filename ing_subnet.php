@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Actualizar nombre del rol</title>
+  <title>Ingresar nueva Subred y rango de IP</title>
 </head>
 
 <body>
