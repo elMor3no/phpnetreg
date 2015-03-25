@@ -19,6 +19,7 @@ if($pParam != FALSE){
   $sPass = $pParam['pass'];
   $sName = $pParam['name'];
   $sLastN = $pParam['apellido'];
+  $sDescripcion = $pParam['descripcion'];
   $sRol = $pParam['rol'];
 
   if(
@@ -42,6 +43,7 @@ if($pParam != FALSE){
 "password" => $sPassSecure,
 "nombre" => $sName,
 "apellido" => $sLastN,
+"descripcion" => $sDescripcion,
 "roles_idroles" => $sRol
 ]);
 echo "Nuevo usuario " . $sName . " " . $sLastN . " insertado" . $sPassSecure;
@@ -74,6 +76,9 @@ echo "Nuevo usuario " . $sName . " " . $sLastN . " insertado" . $sPassSecure;
   <br/>
   <strong>Apellido:</strong><br>
   <input type="text" name="apellido">
+  <br/>
+  <strong>Observaciones:</strong><br>
+  <textarea name="descripcion" rows="3" cols="35"></textarea>
   <br/>
   <strong>Rol:</strong><br>
   <?php

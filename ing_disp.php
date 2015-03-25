@@ -5,6 +5,11 @@ require 'lib_conf/bd_conf.php';
 $database = new medoo();
 //fin de uso de BD
 
+//Mis funciones
+require 'lib_conf/functions.php';
+//
+
+
 $pParam = FALSE;
 
 if(count($_GET) != 0){
@@ -46,12 +51,14 @@ if($pParam != FALSE){
 
   }else{
 	  
-	  $sFecha = $database->query("select now()");
+	  $sMacconv = mac2int($sMac);
+	  $sFecha = 2015;
+//	  $sFecha = $database->query("select now()");
 //Falta poner fecha de caducidad
 
 	  $database->insert("Dispositivo", [
 "NombDisp" => $sDevice_name,
-"mac" => $sMac,
+"mac" => $sMacconv,
 "responsable" => $sOwner,
 "observacion" => $sDescripcion,
 "finsercion" => $sFecha,
@@ -62,7 +69,7 @@ if($pParam != FALSE){
 "IP_idIP" => $sIp_selectd
 ]);
 
-echo "funciona";
+echo "funciona" . $sMac . "   " . $sMacconv;
   }
 
 }
@@ -89,7 +96,7 @@ echo "funciona";
 </head>
 
 <body>
-<form name="devices" method="post">
+<form name="devices" method="get">
   <strong>Nombre del dispositivo:</strong><br>
   <input type="text" name="device_name">
   <br/>
@@ -154,59 +161,14 @@ echo "funciona";
 		echo "</select>";
 		echo "<br/>";
 	?>
-  
-  <?php
-  /*
-  $choicelocal = $database->select("CLibertad",["idCLibertad","local"]);
-  echo "<select name='local_area' onchange="cargarcombos('#plantas', 'combos.php?id_region=' + this.value + '&modo=plantas')"      >\n" ; // list box select command
-  foreach ($choicelocal as $choicelocal)
-  { 
-  echo "<option value=" . $choicelocal['idCLibertad'] . ">\n" . $choicelocal["local"] . "</option>\n";
-  }
-	echo "</select>";
-	echo "<br/>";*/
-  ?>
 <br>
 	<select name="name_area" id="area" >
 		<option value="">Seleccione Area</option>
 	</select> 
 <br/>
 <br/>
-  
-  <?php
-  /*
-  if(isset($_post['local_area'])){
-  $form_local = $_post['local_area'];
-  $choicearea = $database->select("Area",["idArea","Nombrearea","CLibertad_idCLibertad"],["CLibertad_idCLibertad[=]" => $form_local]);
-/*$choicearea = $database->query("SELECT idArea, Nombrearea FROM Area INNER JOIN CLibertad ON $choicelocal = CLibertad_idCLibertad");
-//print_r($choicearea);   // /
-  echo "<select name='area'>\n" ; // list box select command
-  foreach ($choicearea as $choicearea)
-  { 
-  echo "<option value=" . $choicearea['idArea'] . ">\n" . $choicearea["Nombrearea"] . "</option>\n";
-  }
-	echo "</select>";
-	echo "<br/>";
-}	*/
-  ?>
-  
   <input type="submit" value="Guardar">
 </form>
 </body>
 </html>
-<?/*
 
-  <select name="rol" size="1">
-  <option selected value="">Seleccione un rol</option>
-  <?php
-	$choicerol = $database->select("roles",["idrol","nombrol"]);
-	while ($choicerol = mysql_fetch_array($choicerol)) {
-		$id = $choicerol['idrol'];
-		$name = htmlspecialchars($choicerol['nombrol']);
-		echo("<option value='$id'>$name</option>\n");
-	}
-   ?>
-   </select><br />
-   
-   */
-   ?>

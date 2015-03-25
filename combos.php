@@ -2,6 +2,7 @@
 
 //cargando clase de BD
 require 'lib_conf/bd_conf.php';
+
 $database = new medoo();
 //fin de uso de BD
 
