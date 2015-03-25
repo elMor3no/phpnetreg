@@ -32,7 +32,7 @@ if ($modo=="area"){
 elseif ($modo=="ip"){
     $id_subnet = $pParam['id_subnet'];
 	echo '<option value="">Seleccione Direccion IP</option>';
-	$choiceip = $database->query("SELECT `idIP`, `ipnum`, `used`, `Subnet_idSubnet` FROM `IP` WHERE `Subnet_idSubnet` = 5 and `used` = 1")->FetchAll();
+	$choiceip = $database->query("SELECT `idIP`, `ipnum`, `used`, `Subnet_idSubnet` FROM `IP` WHERE `Subnet_idSubnet` = $id_subnet and `used` = 0")->FetchAll();
 	/*
 	"IP",
 	["idIP","Ipnum","used","Subnet_idSubnet"],
