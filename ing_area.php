@@ -17,12 +17,12 @@ if($pParam != FALSE){
 
   $sArea = $pParam['name_area'];
   $sIdLocal = $pParam['local_area'];
-//  $sName = $pParam['name']; Agregar descripcion a la BD
+  $sDescripcion = $pParam['descripcion']; 
 
   if(
      ($sArea == '') or 
-     ($sIdLocal == '') //or
-//     ($sRol == '') 
+     ($sIdLocal == '') or
+     ($sDescripcion == '') 
 ){
 
     $sMensaje =
@@ -35,7 +35,7 @@ if($pParam != FALSE){
 	  $database->insert("Area", [
 "Nombrearea" => $sArea,
 "CLibertad_idCLibertad" => $sIdLocal,
-//"roles_idroles" => $sRol
+"descripcion" => $sDescripcion
 ]);
  $sLocal = $database->select("CLibertad","local", ["idCLibertad[=]" => $sIdLocal]);
 echo "Nuevo area " . $sArea . " ubicada en " . $sLocal[0];
@@ -60,9 +60,9 @@ echo "Nuevo area " . $sArea . " ubicada en " . $sLocal[0];
   <strong>Nombre del Area:</strong><br>
   <input type="text" name="name_area">
   <br/>
-<!--  <strong>Descripcion:</strong><br>
-  <input type="text" name="name">
-  <br/> -->
+  <strong>Descripcion:</strong><br>
+  <input type="text" name="descripcion">
+  <br/> 
   <strong>Ubicada en:</strong><br>
   <?php
   date();
