@@ -8,7 +8,7 @@
   <strong>Tipo de dispositivo:</strong><br>
   <input type="text" name="dispositivo">
   <br/>
-  <strong>Descripción:</strong><br>
+  <strong>Descripcion:</strong><br>
   <input type="text" name="descripcion">
   <br/>
   <input type="submit" value="Guardar">
