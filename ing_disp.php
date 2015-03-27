@@ -71,8 +71,9 @@ if($pParam != FALSE){
 "Area_idArea" => $sName_area,
 "IP_idIP" => $sIp_selectd
 ]);
+	$database->update("IP",["used" => 1],["idIP[=]" =>  $sIp_selectd]);
 
-echo "funciona" . $sMac . "   " . $sMacconv;
+//echo "funciona" . $sMac . "   " . $sMacconv;
   }
 
 }
