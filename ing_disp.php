@@ -29,7 +29,7 @@ if($pParam != FALSE){
   $sVr_select = $pParam['vr_select']; 
  // $sLocal_area = $pParam['local_area'];  
   $sName_area = $pParam['name_area'];  
-  $sFCaducidad = 2015-03-28;
+  $sFCaducidad = "2015-03-28";
 //  $sFCaducidad = $pParam['fcaducidad'];
   if(
  //    ($sDevice_name == '') or 
@@ -53,9 +53,9 @@ if($pParam != FALSE){
   }else{
 	  
 //	  $sMacconv = mac2int($sMac);
-	  $sFInsercion = 2015-03-27;
+	  $sFInsercion = "2015-03-27";
 
-//	  $sFecha = $database->query("select now()");
+//	  $sFInsercion = $database->query("select now()");
 //Falta poner fecha de caducidad
 
 	  $database->insert("Dispositivo", [
@@ -63,7 +63,7 @@ if($pParam != FALSE){
 "mac" => $sMac,
 "responsable" => $sOwner,
 "observacion" => $sDescripcion,
-"finsercion" => $sFInsercion,
+"finsercion" => $sFInsercion[0],
 "fcaducidad" => $sFCaducidad,
 "disponible" => 1,
 "VRectoria_idVRectoria" => $sVr_select,
@@ -73,7 +73,7 @@ if($pParam != FALSE){
 ]);
 	$database->update("IP",["used" => 1],["idIP[=]" =>  $sIp_selectd]);
 
-//echo "funciona" . $sMac . "   " . $sMacconv;
+//echo "funciona" . $sFecha;
   }
 
 }
