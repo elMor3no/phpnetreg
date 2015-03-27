@@ -27,18 +27,19 @@ if($pParam != FALSE){
   $sDivtype = $pParam['div_type']; 
   $sDescripcion = $pParam['descripcion'];   
   $sVr_select = $pParam['vr_select']; 
-  $sLocal_area = $pParam['local_area'];  
+ // $sLocal_area = $pParam['local_area'];  
   $sName_area = $pParam['name_area'];  
-  
+  $sFCaducidad = 2015-03-28;
+//  $sFCaducidad = $pParam['fcaducidad'];
   if(
-     ($sDevice_name == '') or 
+ //    ($sDevice_name == '') or 
      ($sIp_selectd == '') or
      ($sMac == '') or 
      ($sOwner == '') or  
      ($sDivtype == '') or        
-     ($sDescripcion == '') or
+ //    ($sDescripcion == '') or
      ($sVr_select == '') or 
-     ($sLocal_area == '') or
+ //    ($sLocal_area == '') or
      ($sName_area == '') 
      
 ){
@@ -51,21 +52,23 @@ if($pParam != FALSE){
 
   }else{
 	  
-	  $sMacconv = mac2int($sMac);
-	  $sFecha = 2015;
+//	  $sMacconv = mac2int($sMac);
+	  $sFInsercion = 2015-03-27;
+
 //	  $sFecha = $database->query("select now()");
 //Falta poner fecha de caducidad
 
 	  $database->insert("Dispositivo", [
 "NombDisp" => $sDevice_name,
-"mac" => $sMacconv,
+"mac" => $sMac,
 "responsable" => $sOwner,
 "observacion" => $sDescripcion,
-"finsercion" => $sFecha,
+"finsercion" => $sFInsercion,
+"fcaducidad" => $sFCaducidad,
 "disponible" => 1,
 "VRectoria_idVRectoria" => $sVr_select,
 "TipoDispositivo_idTipoDispositivo" => $sDivtype,
-"Area_idArea" => $sLocal_area,
+"Area_idArea" => $sName_area,
 "IP_idIP" => $sIp_selectd
 ]);
 
