@@ -28,8 +28,9 @@ if($pParam != FALSE){
   $sDescripcion = $pParam['descripcion'];   
   $sVr_select = $pParam['vr_select']; 
  // $sLocal_area = $pParam['local_area'];  
-  $sName_area = $pParam['name_area'];  
-  $sFCaducidad = "2015-03-28";
+  $sName_area = $pParam['name_area']; 
+  $sFInsercion = date("Y\-m\-d H\:i\:s"); 
+  $sFCaducidad = "2014-04-28";
 //  $sFCaducidad = $pParam['fcaducidad'];
   if(
  //    ($sDevice_name == '') or 
@@ -37,7 +38,7 @@ if($pParam != FALSE){
      ($sMac == '') or 
      ($sOwner == '') or  
      ($sDivtype == '') or        
- //    ($sDescripcion == '') or
+//     ($sFCaducidad < $sFInsercion) or  Buscar como validad fechas????
      ($sVr_select == '') or 
  //    ($sLocal_area == '') or
      ($sName_area == '') 
@@ -47,15 +48,14 @@ if($pParam != FALSE){
     $sMensaje =
       'El nombre y la descripción '.
       'del nuevo rol no pueden '.
-      'ser cadenas vacías.';
+      'ser cadenas vacías. Verifique que la fecha de caducidad no sea anterior al dia actual';
     echo($sMensaje);
 
   }else{
 	  
 //	  $sMacconv = mac2int($sMac);
-	  $sFInsercion = "2015-03-27";
 
-//	  $sFInsercion = $database->query("select now()");
+
 //Falta poner fecha de caducidad
 
 	  $database->insert("Dispositivo", [
@@ -63,7 +63,7 @@ if($pParam != FALSE){
 "mac" => $sMac,
 "responsable" => $sOwner,
 "observacion" => $sDescripcion,
-"finsercion" => $sFInsercion[0],
+"finsercion" => $sFInsercion,
 "fcaducidad" => $sFCaducidad,
 "disponible" => 1,
 "VRectoria_idVRectoria" => $sVr_select,
@@ -100,7 +100,7 @@ if($pParam != FALSE){
 </head>
 
 <body>
-<form name="devices" method="get">
+<form name="devices" method="post">
   <strong>Nombre del dispositivo:</strong><br>
   <input type="text" name="device_name">
   <br/>
@@ -125,9 +125,10 @@ if($pParam != FALSE){
   <input type="text" name="mac">
   <br/> 
   <strong>Tipo de Dispositivo:</strong><br>
+  <select name='div_type'>
+  <option value=' ' >Seleccione tipo de dispositivo</option>"
   <?php
   $choicediv = $database->select("TipoDispositivo",["idTipoDispositivo","TipoDispositivo"]);
-  echo "<select name='div_type'>\n" ; // list box select command
   foreach ($choicediv as $choicediv)
   { 
   echo "<option value=" . $choicediv['idTipoDispositivo'] . ">\n" . $choicediv['TipoDispositivo'] . "</option>\n";
@@ -143,9 +144,10 @@ if($pParam != FALSE){
   <input type="text" name="descripcion">
   <br/> 
   <strong>Ubicada en:</strong><br>
+  <select name='vr_select'>
+  <option value=' ' >Seleccione Ubicacion</option>"
   <?php
   $choicevr = $database->select("VRectoria",["idVRectoria","VRNombre"]);
-  echo "<select name='vr_select'>\n" ; // list box select command
   foreach ($choicevr as $choicevr)
   { 
   echo "<option value=" . $choicevr['idVRectoria'] . ">\n" . $choicevr['VRNombre'] . "</option>\n";
