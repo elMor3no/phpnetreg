@@ -24,14 +24,6 @@ if(isset($_SESSION['user']) && isset($_SESSION['pass']) )
   <input type="submit" value="Guardar">
 </form>
 </div>
-<!--
-<div id="dlogout">
-<form name="flogout" action="index3.php" method="get">
-  <br/>
-  <input type="submit" value="salir">
-</form>
-</div>
--->
 </body>
 </html>
 <?
