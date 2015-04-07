@@ -27,6 +27,7 @@
   <input type="submit" value="Guardar">
 </form>
 </div>
+<!--
 <h1>NO FUNCIONA AUN</h1>
 <div id="s_user_roles">
 <form name="roles_user" action="ver_user_rol.php" method="post">
@@ -37,6 +38,6 @@
   <input type="submit" value="Guardar">
 </form>
 </div>
-
+-->
 </body>
 </html>
