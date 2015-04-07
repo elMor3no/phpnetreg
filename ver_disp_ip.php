@@ -1,4 +1,5 @@
 <?php 
+include("check_login.php");
 
 //cargando clase de BD
 require 'lib_conf/bd_conf.php';
