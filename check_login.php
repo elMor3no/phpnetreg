@@ -1,8 +1,7 @@
 <?php
 	session_start();
-	if(!isset($HTTP_POST_VARS['user'])&&!isset($HTTP_POST_VARS['password']))
+	if(!isset($_SESSION['user']) && !isset($_SESSION['pass']) )
 	{
-		header('location login.php');
+		header('Location: login.php');
 	}
-
 ?>

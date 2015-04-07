@@ -1,3 +1,10 @@
+<?
+session_start();
+if(isset($_SESSION['user']) && isset($_SESSION['pass']) )
+{
+	header('Location: index2.php');		
+}else{ 
+?>
 <html>
 <head>
   <title>PHPNETREG</title>
@@ -7,7 +14,7 @@
 <body>
 	
 <div id="dlogin">
-<form name="flogin" action="index2.php" method="post">
+<form name="flogin" action="make_login.php" method="post">
   Usuario: 
   <input type="text" name="user">
   <br/>
@@ -17,5 +24,16 @@
   <input type="submit" value="Guardar">
 </form>
 </div>
+<!--
+<div id="dlogout">
+<form name="flogout" action="index3.php" method="get">
+  <br/>
+  <input type="submit" value="salir">
+</form>
+</div>
+-->
 </body>
 </html>
+<?
+}
+?>
