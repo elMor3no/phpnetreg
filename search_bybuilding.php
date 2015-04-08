@@ -12,7 +12,7 @@ require 'lib_conf/functions.php';
 
 <html>
 <head>
-  <title>Buscar dispositivos por Subnet</title>
+  <title>Buscar dispositivos segun su localizacion</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <!--
   <script language="javascript" type="text/javascript" src="lib_conf/jquery-1.7.2.min.js"></script>
@@ -30,18 +30,19 @@ require 'lib_conf/functions.php';
 </head>
 <body>
 	
-<div id="s_bysubnet">
-<form name="devices_subnet" action="ver_by_sn.php" method="post">
-  <strong>Nombre del dispositivo:</strong><br>
-  <select name="sn_select" id="subnet" >
-	<option value="">Seleccione una subred</option> 
+<div id="s_bybuilding">
+<form name="devices_building" action="ver_by_b.php" method="post">
+  <strong>Ubicacion:</strong><br>
+  <select name="b_select" id="local" >
+	<option value="">Seleccione una Ubicacion</option> 
 	<?php
-		 $choicesn = $database->select("Subnet",["idSubnet","descripcion"]);
-		 foreach ($choicesn as $choicesn)
-			{ 
-				echo "<option value=" . $choicesn['idSubnet'] . ">\n" . $choicesn['descripcion'] . "</option>\n";
-			}
+		$choicelocal = $database->select("CLibertad",["idCLibertad","local"]);
+		foreach ($choicelocal as $choicelocal)
+		{ 
+			echo "<option value=" . $choicelocal['idCLibertad'] . ">\n" . $choicelocal["local"] . "</option>\n";
+		}
 		echo "</select>";
+		echo "<br/>";
 	?>
   <br/>
   <input type="submit" value="Guardar">

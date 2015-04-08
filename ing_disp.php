@@ -1,3 +1,6 @@
+<?php
+include("check_login.php");
+?>
 <?php 
 
 //cargando clase de BD
@@ -75,19 +78,26 @@ if($pParam != FALSE){
 
 //echo "funciona" . $sFecha;
   }
-
 }
-
-
-
-
+include("navbar.php");
 ?>
 
 <html>
 <head>
   <title>Ingresar nuevo Dispositivo</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-  <script language="javascript" type="text/javascript" src="lib_conf/jquery-1.7.2.min.js"></script>
+	<html lang="es"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content=""> 
+	<script language="javascript" type="text/javascript" src="lib_conf/jquery-1.7.2.min.js"></script>
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style-footer.css" rel="stylesheet">
 	<script type="text/javascript">
 	function cargarcombos(combo, url){
     $(combo).html("<option selected>Cargando...</option>");
@@ -100,7 +110,13 @@ if($pParam != FALSE){
 </head>
 
 <body>
-<form name="devices" method="post">
+<div class="container">	
+      <div class="page-header">
+        <h1>Introduzca un nuevo dispositivo</h1>
+      </div>
+
+<form name="devices" method="post" class="form-signin">
+  <p class="lead">
   <strong>Nombre del dispositivo:</strong><br>
   <input type="text" name="device_name">
   <br/>
@@ -173,8 +189,14 @@ if($pParam != FALSE){
 	</select> 
 <br/>
 <br/>
-  <input type="submit" value="Guardar">
+<button class="btn btn-lg btn-primary" type="submit">Aceptar</button>
+</p>
+</div>
 </form>
+<?php
+include("footer.php")
+?>
 </body>
 </html>
+
 

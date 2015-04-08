@@ -1,5 +1,4 @@
 <?php 
-//include("check_login.php");
 
 //cargando clase de BD
 require 'lib_conf/bd_conf.php';
@@ -56,24 +55,30 @@ if($pParam != FALSE){
   
    else{
 */
+
 /* 
  * 
- * buscar por ip
+ * buscar por mac
  * 
-* */ 
+ */
   
-if ($pParam['sn_select']){
-$sSubnet = $pParam['sn_select'];
-echo "<h1>"."Resultado de la Busqueda" . "<br/>"."</h1>";
-$datas = $database->query("SELECT * FROM `Dispositivo`, `IP` WHERE IP.Subnet_idSubnet = '$sSubnet' and IP.used = 1 and IP.idIP = Dispositivo.IP_idIP")->fetchAll();
+if ($pParam['device_own'] != ''){
+$sOWN = "%".$pParam['device_own']."%";
+$datas = $database->query("SELECT * FROM `Dispositivo` WHERE responsable LIKE '$sOWN'")->fetchAll();
+echo "Resultado de la Busqueda" . "<br/>";
+echo "<br/>";
 $sCont = count($datas);
 echo "<h3>"."Se encontraron un total de " . $sCont . " de ordenadores". "<br/>"."</h3>";
 foreach($datas as $datas)
 {
+//	echo "PC: " . $data["NombDiso"] . "<br/>" . " Descripcion: " . $data["descripcion"] . "<br>" . " Mascara de Red: " . long2ip($data["mask"]) . "<br/>" . " Id de Red: " . long2ip($data["ipaddr"]) . "<br/>" . "<br/>" . "<br/>";
+	echo "PC: " . $datas["NombDisp"] . "<br/>" . " Direccion MAC: " . $datas["mac"] . "<br/>" . " Duenno/Responsable: " . $datas["responsable"] . "<br/>" . " Descripcion: " . $datas["observacion"] ."<br/>" . "<br/>" . "<br/>";
+}
+}
+//}
 
-	$sIPconv = long2ip($datas["ipnum"]);
-	echo "PC: " . $datas["NombDisp"] . "<br/>" . " Direccion MAC: " . $datas["mac"] . "<br/>" . " Duenno/Responsable: " . $datas["responsable"] . "<br/>" . " Descripcion: " . $datas["observacion"] ."<br/>" . "Direccion IP: " . $sIPconv ."<br/>" . "<br/>";
+
 }
-}
-}
+
+include("search_disp.php");
 ?>

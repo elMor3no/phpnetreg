@@ -62,18 +62,18 @@ if($pParam != FALSE){
  * 
 * */ 
   
-if ($pParam['sn_select']){
-$sSubnet = $pParam['sn_select'];
+if ($pParam['b_select']){
+$sLocal = $pParam['b_select'];
 echo "<h1>"."Resultado de la Busqueda" . "<br/>"."</h1>";
-$datas = $database->query("SELECT * FROM `Dispositivo`, `IP` WHERE IP.Subnet_idSubnet = '$sSubnet' and IP.used = 1 and IP.idIP = Dispositivo.IP_idIP")->fetchAll();
+$datas = $database->query("SELECT * FROM `Dispositivo`, `Area`, `IP` WHERE Area.CLibertad_idCLibertad = '$sLocal' and Area.idArea =  Dispositivo.Area_idArea and IP.idIP = Dispositivo.IP_idIP")->fetchAll();
 $sCont = count($datas);
 echo "<h3>"."Se encontraron un total de " . $sCont . " de ordenadores". "<br/>"."</h3>";
 foreach($datas as $datas)
 {
-
 	$sIPconv = long2ip($datas["ipnum"]);
 	echo "PC: " . $datas["NombDisp"] . "<br/>" . " Direccion MAC: " . $datas["mac"] . "<br/>" . " Duenno/Responsable: " . $datas["responsable"] . "<br/>" . " Descripcion: " . $datas["observacion"] ."<br/>" . "Direccion IP: " . $sIPconv ."<br/>" . "<br/>";
 }
 }
 }
+
 ?>

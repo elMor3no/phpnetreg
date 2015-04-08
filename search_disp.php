@@ -47,5 +47,14 @@
   <input type="submit" value="Guardar">
 </form>
 </div>
+<div id="s_own">
+<form name="devices_own" action="ver_disp_own.php" method="post">
+  <strong>Responsable del dispositivo:</strong><br>
+  <input type="text" name="device_own">
+  <br/>
+  <br/>
+  <input type="submit" value="Guardar">
+</form>
+</div>
 </body>
 </html>
