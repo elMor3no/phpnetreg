@@ -11,15 +11,9 @@ include("navbar.php");
 </head>
 <body>
 
-<h1>Estas logueado</h1>
+<h1>Aqui se pondran las estadisticas de dispositivos agregados al sistema</h1>
 
 
-<div id="dlogout">
-<form name="flogout" action="logout.php" method="post">
-  <br/>
-  <input type="submit" value="salir">
-</form>
-</div>
        <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -81,10 +81,10 @@ if($pParam != FALSE){
 }
 include("navbar.php");
 ?>
-
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Ingresar nuevo Dispositivo</title>
+  <title>PHPNETREG - Ingresar nuevo dispositivo</title>
 	<html lang="es"><head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -110,18 +110,25 @@ include("navbar.php");
 </head>
 
 <body>
-<div class="container">	
-      <div class="page-header">
-        <h1>Introduzca un nuevo dispositivo</h1>
+<div class="container-fluid row">	
+	<div class="col-xs-12 col-md-2"></div>
+	  <div class="col-xs-12 col-md-8 panel panel-primary">
+      <div class="panel-heading">
+        <h3>Introduzca un nuevo dispositivo</h3>
       </div>
-
-<form name="devices" method="post" class="form-signin">
-  <p class="lead">
-  <strong>Nombre del dispositivo:</strong><br>
-  <input type="text" name="device_name">
+      <br/>
+<div class="alert alert-info">
+  <a class="alert-link">Todos los campos son obligatorios.</a>
+</div>
+<form name="devices" method="post" class="form-signin" role="form">
+  <div class="form-group">
+  <label for="device_name">Nombre del dispositivo:</label>	  
+  <input type="text" class="form-control" placeholder="Nombre del dispositivo..." name="device_name" id="device_name" required autofocus>
   <br/>
-  <strong>Subred:</strong><br>
-    <select name="sn_select" id="subnet" onchange="cargarcombos('#ip', 'combos.php?id_subnet=' + this.value + '&modo=ip')" >
+  <div class="container-fluid row">
+  <div class="col-xs-8 col-md-6">
+  <label for="subnet">Nombre de la Subred:</label>	
+    <select name="sn_select" class="form-control" id="subnet" onchange="cargarcombos('#ip', 'combos.php?id_subnet=' + this.value + '&modo=ip')" required>
 	<option value="">Seleccione una subred</option> 
 	<?php
 		 $choicesn = $database->select("Subnet",["idSubnet","descripcion"]);
@@ -132,17 +139,30 @@ include("navbar.php");
 		echo "</select>";
 		echo "<br/>";
 	?>
-	<strong>Direccion IP:</strong><br>
-	<select name="ip_select" id="ip" >
+	</div>
+    <div class="col-xs-8 col-md-6">	
+	<label for="ip">Direccion IP:</label>	
+	<select name="ip_select" id="ip" class="form-control" required>
 	<option value="">Seleccione Direccion IP</option>
 	</select> 
-	<br/>
-  <strong>MAC:</strong><br>
-  <input type="text" name="mac">
-  <br/> 
-  <strong>Tipo de Dispositivo:</strong><br>
-  <select name='div_type'>
-  <option value=' ' >Seleccione tipo de dispositivo</option>"
+	</div>	
+	</div>
+   <div class="container-fluid row">
+    <div class="col-xs-8 col-md-6">
+	<label for="mac">Dirección Física:</label>	
+    <input type="text" class="form-control" placeholder="Dirección Física..." name="mac" id="mac" required>
+    <span class="help-block">Ingresar direccion MAC. Ej: 00:11:2f:35:77:8e </span>
+    </div>
+    <div class="col-xs-8 col-md-6">
+    <label for="owner">Responsable:</label>
+    <input type="text" class="form-control" placeholder="Responsable..." name="owner" required>
+    <span class="help-block">Dueño o usuario que responde por este dispositivo.</span>    
+    </div>
+   </div>
+ 
+  <label for="type">Tipo de Dispositivo:</label>
+  <select name='div_type' class="form-control" id="type" required>
+  <option value="" >Seleccione tipo de dispositivo</option>"
   <?php
   $choicediv = $database->select("TipoDispositivo",["idTipoDispositivo","TipoDispositivo"]);
   foreach ($choicediv as $choicediv)
@@ -152,16 +172,11 @@ include("navbar.php");
 	echo "</select>";
 	echo "<br/>";
   ?>
-  <br>
-  <strong>Responsable:</strong><br>
-  <input type="text" name="owner">
-  <br/> 
-  <strong>Observacion:</strong><br>
-  <input type="text" name="descripcion">
-  <br/> 
-  <strong>Ubicada en:</strong><br>
-  <select name='vr_select'>
-  <option value=' ' >Seleccione Ubicacion</option>"
+  <div class="container-fluid row">
+  <div class="col-xs-8 col-md-4">
+  <label for="location">Ubicada en:</label>
+  <select name='vr_select' class="form-control" id="location" required>
+  <option value="" >Seleccione Ubicacion</option>"
   <?php
   $choicevr = $database->select("VRectoria",["idVRectoria","VRNombre"]);
   foreach ($choicevr as $choicevr)
@@ -171,8 +186,10 @@ include("navbar.php");
 	echo "</select>";
 	echo "<br/>";
   ?>
-  <br>
-  <select name="local_area" id="region" onchange="cargarcombos('#area', 'combos.php?id_region=' + this.value + '&modo=area')" >
+  </div>
+  <div class="col-xs-8 col-md-4">  
+  <label for="region">Ubicada en:</label>
+  <select name="local_area" class="form-control" required id="region" onchange="cargarcombos('#area', 'combos.php?id_region=' + this.value + '&modo=area')" >
 	<option value="">Seleccione una localizacion</option> 
 	<?php
 		$choicelocal = $database->select("CLibertad",["idCLibertad","local"]);
@@ -183,16 +200,64 @@ include("navbar.php");
 		echo "</select>";
 		echo "<br/>";
 	?>
-<br>
-	<select name="name_area" id="area" >
+</div>
+  <div class="col-xs-8 col-md-4">
+	  <label for="area">Ubicada en:</label>
+	<select name="name_area" id="area" class="form-control" required>
 		<option value="">Seleccione Area</option>
 	</select> 
 <br/>
+</div>
+</div>
+
+<!--
+<label for="device_caduca">Fecha de caducidad:</label>	  
+  <input type="datetime-local" class="form-control" name="device_name" id="device_caduca">
+
 <br/>
+-->
+  <label for="descripcion">Observacion:</label>
+  <br>
+  <input type="textarea" class="form-control" name="descripcion" rows="3" id="descripcion" required>
+  <br/> 
+  <!--
+<div class="container">
+    <div class="col-sm-6" style="height:130px;">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker10'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker10').datetimepicker({
+                viewMode: 'years',
+                format: 'MM/YYYY'
+            });
+        });
+    </script>
+</div>
+
+-->
 <button class="btn btn-lg btn-primary" type="submit">Aceptar</button>
-</p>
+</div>
 </div>
 </form>
+</div>
+<div class="col-xs-12 col-md-2"></div>
+       <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script> 
+    <br><br><br>
 <?php
 include("footer.php")
 ?>

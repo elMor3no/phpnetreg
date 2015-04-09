@@ -7,7 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="PHPNETREG">
     <meta name="author" content="Pablo Mestre">
+    <!--
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    -->
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
@@ -35,7 +37,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Insertar <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">Ubicación</li>				  
-                <li><a href="#">Edificio</a></li>
+                <li><a href="ing_local.php">Edificio</a></li>
                 <li><a href="ing_area.php">Área</a></li>
                 <li><a href="ing_vr.php">Vicerectoría</a></li>
                 <li class="divider"></li>
@@ -65,11 +67,11 @@
                 <li><a href="#">Usuario</a></li>
              </ul>
             </li>
-            <li><a href="#about">Acerca de PHPNETREG</a></li>
-            <li><a href="#contact">Contacto</a></li>
+            <li><a href="about.php">Acerca de PHPNETREG</a></li>
+            <li><a href="contact.php">Contacto</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-		      <button href="logout.php" class="btn btn-danger btn-block" type="submit">Salir</button>
+          <form action="logout.php" class="navbar-form navbar-right">
+		      <button  class="btn btn-danger btn-block" >Salir</button>
           </form>  
         </div><!--/.nav-collapse -->
       </div>
